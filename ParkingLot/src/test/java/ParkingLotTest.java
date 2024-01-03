@@ -41,6 +41,13 @@ public class ParkingLotTest {
     public void givenCar_AssignAttendant_ParkCar()
     {
         ParkingLot parkingLot = new ParkingLot();
-        Assert.assertTrue(parkingLot.parkCar("6","1"));
+        Assert.assertTrue(parkingLot.parkCar("6",new Attendant("1")));
+    }
+    /*UC 7 - find car*/
+    @Test
+    public void givenCarNumber_FindCar_ReturnLot()
+    {
+        ParkingLot parkingLot = new ParkingLot();
+        Assert.assertEquals(3,parkingLot.findCar("3"));
     }
 }
