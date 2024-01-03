@@ -30,6 +30,20 @@ public class ParkingLot {
             return true;
         }
     }
+    static boolean parkCar(String carNumber,String attendantNumber)
+    {
+        if(carList.size() < 5)
+        {
+            carList.add(carNumber);
+            System.out.println(attendantNumber+ "has successfully parked car number "+ carNumber);
+            return true;
+        }
+        else
+        {
+            System.out.println("Parking full");
+            return false;
+        }
+    }
     static void printCars()
     {
         System.out.println(carList);
