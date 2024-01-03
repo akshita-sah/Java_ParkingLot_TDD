@@ -16,5 +16,12 @@ public class ParkingLotTest {
         Assert.assertEquals(true,parkingLot.parkCar("123"));
         Assert.assertEquals(true,parkingLot.removeCar("123"));
     }
+    @Test
+    /* UC 3, find if car is full */
+    public void givenCapacity_CheckLotFull_ReturnFullOrNot()
+    {
+        ParkingLot parkingLot = new ParkingLot();
+        Assert.assertTrue(parkingLot.findCapacity());
+    }
     
 }
