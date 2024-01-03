@@ -9,5 +9,12 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot();
         Assert.assertEquals(true,parkingLot.parkCar("1"));
     }
+    @Test
+    /* UC - 2, unpark car */
+    public void givenParkNumber_RemoveCar_ReturnTrue(){
+        ParkingLot parkingLot = new ParkingLot();
+        Assert.assertEquals(true,parkingLot.parkCar("123"));
+        Assert.assertEquals(true,parkingLot.removeCar("123"));
+    }
     
 }
