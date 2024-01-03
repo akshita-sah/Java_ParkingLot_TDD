@@ -36,4 +36,11 @@ public class ParkingLotTest {
         parkingLot.removeCar("2");
         Assert.assertTrue(parkingLot.notifyFull());
     }
+    @Test
+    /*UC 6 - assign attendant*/
+    public void givenCar_AssignAttendant_ParkCar()
+    {
+        ParkingLot parkingLot = new ParkingLot();
+        Assert.assertTrue(parkingLot.parkCar("6","1"));
+    }
 }
