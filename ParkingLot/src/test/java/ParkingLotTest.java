@@ -2,18 +2,20 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.util.Date;
+
 public class ParkingLotTest {
     /* UC - 1, given car park it and return true  */
     @Test
     public void givenCar_ParkTheCar_ReturnTrue(){
         ParkingLot parkingLot = new ParkingLot();
-        Assert.assertEquals(true,parkingLot.parkCar("1"));
+        Assert.assertEquals(true,parkingLot.parkCar(new Car("1",new java.util.Date())));
     }
     @Test
     /* UC - 2, unpark car */
     public void givenParkNumber_RemoveCar_ReturnTrue(){
         ParkingLot parkingLot = new ParkingLot();
-        Assert.assertEquals(true,parkingLot.parkCar("123"));
+        Assert.assertEquals(true,parkingLot.parkCar(new Car("123",new java.util.Date())));
         Assert.assertEquals(true,parkingLot.removeCar("123"));
     }
     @Test
@@ -28,10 +30,10 @@ public class ParkingLotTest {
     public void givenCapacity_CheckFull_NotifyToRemoveFullSign()
     {
         ParkingLot parkingLot = new ParkingLot();
-        parkingLot.parkCar("2");
-        parkingLot.parkCar("3");
-        parkingLot.parkCar("4");
-        parkingLot.parkCar("5");
+        parkingLot.parkCar(new Car("2",new java.util.Date()));
+        parkingLot.parkCar(new Car("3",new java.util.Date()));
+        parkingLot.parkCar(new Car("4",new java.util.Date()));
+        parkingLot.parkCar(new Car("5",new java.util.Date()));
         Assert.assertFalse(parkingLot.notifyFull());
         parkingLot.removeCar("2");
         Assert.assertTrue(parkingLot.notifyFull());
@@ -41,7 +43,7 @@ public class ParkingLotTest {
     public void givenCar_AssignAttendant_ParkCar()
     {
         ParkingLot parkingLot = new ParkingLot();
-        Assert.assertTrue(parkingLot.parkCar("6",new Attendant("1")));
+        Assert.assertTrue(parkingLot.parkCar(new Car("6",new java.util.Date()),new Attendant("1")));
     }
     /*UC 7 - find car*/
     @Test
@@ -49,5 +51,12 @@ public class ParkingLotTest {
     {
         ParkingLot parkingLot = new ParkingLot();
         Assert.assertEquals(3,parkingLot.findCar("3"));
+    }
+    /*UC 8- Find charge*/
+    @Test
+    public void givenCar_FindCharge_ReturnTimeOfArrival()
+    {
+        ParkingLot parkingLot = new ParkingLot();
+        Assert.assertNotNull(parkingLot.findTimeOfArrival("1"));
     }
 }
