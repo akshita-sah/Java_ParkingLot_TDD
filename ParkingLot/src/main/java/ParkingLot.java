@@ -58,6 +58,7 @@ public class ParkingLot {
     }
     static boolean parkCar(Car c,Attendant a)
     {
+        c.attendant = a.id;
         for(int i=0;i<5;i++)
         {
             if(carList.get(i) == null) {
@@ -129,6 +130,17 @@ public class ParkingLot {
             if (carList.get(i)!=null && carList.get(i).color == "white") {
                 System.out.println(carList.get(i).color);
                 lots.add(Integer.valueOf(i));
+            }
+        }
+        System.out.println(lots);
+        return lots;
+    }
+    public ArrayList<Car> findBrandCars(String brandSearch)
+    {
+        ArrayList<Car>lots = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            if (carList.get(i)!=null && carList.get(i).brand == brandSearch) {
+                lots.add(carList.get(i));
             }
         }
         System.out.println(lots);
