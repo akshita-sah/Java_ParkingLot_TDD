@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ParkingLot {
-    static ArrayList<String>carList = new ArrayList<>(5);
+    static ArrayList<Car>carList = new ArrayList<>(5);
     ParkingLot()
     {
         if(carList.size()==0)
@@ -12,12 +13,12 @@ public class ParkingLot {
             }
         }
     }
-    static boolean parkCar(String carNumber)
+    static boolean parkCar(Car c)
     {
         for(int i=0;i<5;i++)
         {
             if(carList.get(i) == null){
-                carList.add(i,carNumber);
+                carList.add(i,c);
                 return true;
             }
         }
@@ -27,7 +28,7 @@ public class ParkingLot {
     {
         for(int i=0;i<5;i++)
         {
-            if(carList.get(i)==carNumber)
+            if(carList.get(i).carNumber==carNumber)
             {
                 carList.add(i,null);
                 return true;
@@ -55,13 +56,13 @@ public class ParkingLot {
         }
         return false;
     }
-    static boolean parkCar(String carNumber,Attendant a)
+    static boolean parkCar(Car c,Attendant a)
     {
         for(int i=0;i<5;i++)
         {
             if(carList.get(i) == null) {
-                carList.add(i,carNumber);
-                System.out.println(a.id + "has successfully parked car number " + carNumber);
+                carList.add(i,c);
+                System.out.println(a.id + "has successfully parked car number " + c.carNumber);
                 return true;
             }
         }
@@ -72,12 +73,23 @@ public class ParkingLot {
     {
         for(int i=0;i<5;i++)
         {
-            if(carList.get(i) == carNumber)
+            if(carList.get(i)!=null && carList.get(i).carNumber == carNumber)
             {
                 return i;
             }
         }
         return -1;
+    }
+    static Date findTimeOfArrival(String carNumber)
+    {
+        for(int i=0;i<5;i++)
+        {
+            if(carList.get(i)!=null && carList.get(i).carNumber == carNumber)
+            {
+                return carList.get(i).time;
+            }
+        }
+        return null;
     }
     static void printCars()
     {
