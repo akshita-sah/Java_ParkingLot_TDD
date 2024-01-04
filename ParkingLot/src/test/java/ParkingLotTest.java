@@ -9,13 +9,13 @@ public class ParkingLotTest {
     @Test
     public void givenCar_ParkTheCar_ReturnTrue(){
         ParkingLot parkingLot = new ParkingLot();
-        Assert.assertEquals(true,parkingLot.parkCar(new Car("1",new java.util.Date(),"N","white")));
+        Assert.assertEquals(true,parkingLot.parkCar(new Car("1",new java.util.Date(),"N","white","Toyota")));
     }
     @Test
     /* UC - 2, unpark car */
     public void givenParkNumber_RemoveCar_ReturnTrue(){
         ParkingLot parkingLot = new ParkingLot();
-        Assert.assertEquals(true,parkingLot.parkCar(new Car("123",new java.util.Date(),"N","red")));
+        Assert.assertEquals(true,parkingLot.parkCar(new Car("123",new java.util.Date(),"N","red","Toyota")));
         Assert.assertEquals(true,parkingLot.removeCar("123"));
     }
     @Test
@@ -30,10 +30,10 @@ public class ParkingLotTest {
     public void givenCapacity_CheckFull_NotifyToRemoveFullSign()
     {
         ParkingLot parkingLot = new ParkingLot();
-        parkingLot.parkCar(new Car("2",new java.util.Date(),"N","white"));
-        parkingLot.parkCar(new Car("3",new java.util.Date(),"N","red"));
-        parkingLot.parkCar(new Car("4",new java.util.Date(),"N","white"));
-        parkingLot.parkCar(new Car("5",new java.util.Date(),"N","white"));
+        parkingLot.parkCar(new Car("2",new java.util.Date(),"N","white","BMW"));
+        parkingLot.parkCar(new Car("3",new java.util.Date(),"N","red","BMW"));
+        parkingLot.parkCar(new Car("4",new java.util.Date(),"N","white","Toyota"));
+        parkingLot.parkCar(new Car("5",new java.util.Date(),"N","white","BMW"));
         Assert.assertFalse(parkingLot.notifyFull());
         parkingLot.removeCar("2");
         Assert.assertTrue(parkingLot.notifyFull());
@@ -43,7 +43,7 @@ public class ParkingLotTest {
     public void givenCar_AssignAttendant_ParkCar()
     {
         ParkingLot parkingLot = new ParkingLot();
-        Assert.assertTrue(parkingLot.parkCar(new Car("6",new java.util.Date(),"N","blue"),new Attendant("1")));
+        Assert.assertTrue(parkingLot.parkCar(new Car("6",new java.util.Date(),"N","blue","Maruti"),new Attendant("1")));
     }
     /*UC 7 - find car*/
     @Test
@@ -72,7 +72,7 @@ public class ParkingLotTest {
     {
         ParkingLot parkingLot = new ParkingLot();
         parkingLot.removeCar("6");
-        Assert.assertEquals(0,parkingLot.assignLot(new Car("6",new java.util.Date(),"H","white"),new Attendant("3")));
+        Assert.assertEquals(0,parkingLot.assignLot(new Car("6",new java.util.Date(),"H","white","BMW"),new Attendant("3")));
     }
     /* UC 12 - Find white cars */
     @Test
@@ -80,5 +80,12 @@ public class ParkingLotTest {
     {
         ParkingLot parkingLot = new ParkingLot();
         Assert.assertNotNull(parkingLot.findWhiteCars());
+    }
+    /* UC 13 - given brand, find carid, lot and attendant*/
+    @Test
+    public void givenBrand_FindCarsWithBrand_ReturnLots()
+    {
+        ParkingLot parkingLot = new ParkingLot();
+        Assert.assertEquals(2,parkingLot.findBrandCars("Toyota").size());
     }
 }
