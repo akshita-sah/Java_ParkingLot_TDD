@@ -59,4 +59,11 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot();
         Assert.assertNotNull(parkingLot.findTimeOfArrival("1"));
     }
+    /* UC 9 - Attendant to direct people */
+    @Test
+    public void givenCarAttendant_AssignLot_ReturnSlot()
+    {
+        ParkingLot parkingLot = new ParkingLot();
+        Assert.assertEquals(0,parkingLot.assignLot(new Attendant("2")));
+    }
 }

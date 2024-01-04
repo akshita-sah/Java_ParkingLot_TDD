@@ -99,4 +99,16 @@ public class ParkingLot {
     {
         System.out.println("Welcome to Parking Lot System");
     }
+
+    public int assignLot(Attendant attendant) {
+        for(int i=0;i<5;i++)
+        {
+            if(carList.get(i) != null)
+            {
+                System.out.println("The car lot assigned by attendant"+attendant.id+"is : "+i);
+                return i;
+            }
+        }
+        return -1;
+    }
 }
