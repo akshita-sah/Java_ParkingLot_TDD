@@ -146,4 +146,15 @@ public class ParkingLot {
         System.out.println(lots);
         return lots;
     }
+
+    public ArrayList<Car> findBMWCars(String brandSearch) {
+        ArrayList<Car>lots = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            if (carList.get(i)!=null && carList.get(i).brand == brandSearch) {
+                lots.add(carList.get(i));
+            }
+        }
+        System.out.println(lots);
+        return lots;
+    }
 }

@@ -32,7 +32,7 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot();
         parkingLot.parkCar(new Car("2",new java.util.Date(),"N","white","BMW"));
         parkingLot.parkCar(new Car("3",new java.util.Date(),"N","red","BMW"));
-        parkingLot.parkCar(new Car("4",new java.util.Date(),"N","white","Toyota"));
+        parkingLot.parkCar(new Car("4",new java.util.Date(),"N","white","BMW"));
         parkingLot.parkCar(new Car("5",new java.util.Date(),"N","white","BMW"));
         Assert.assertFalse(parkingLot.notifyFull());
         parkingLot.removeCar("2");
@@ -43,7 +43,7 @@ public class ParkingLotTest {
     public void givenCar_AssignAttendant_ParkCar()
     {
         ParkingLot parkingLot = new ParkingLot();
-        Assert.assertTrue(parkingLot.parkCar(new Car("6",new java.util.Date(),"N","blue","Maruti"),new Attendant("1")));
+        Assert.assertTrue(parkingLot.parkCar(new Car("6",new java.util.Date(),"N","blue","BMW"),new Attendant("1")));
     }
     /*UC 7 - find car*/
     @Test
@@ -87,5 +87,12 @@ public class ParkingLotTest {
     {
         ParkingLot parkingLot = new ParkingLot();
         Assert.assertEquals(2,parkingLot.findBrandCars("Toyota").size());
+    }
+    /* UC 14 - Find BMW Cars */
+    @Test
+    public void givenBrand_FindLotsWithBrand_ReturnLots()
+    {
+        ParkingLot parkingLot = new ParkingLot();
+        Assert.assertEquals(1,parkingLot.findBMWCars("BMW").size());
     }
 }
