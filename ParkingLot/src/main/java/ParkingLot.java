@@ -122,4 +122,16 @@ public class ParkingLot {
         }
         return -1;
     }
+    public ArrayList<Integer> findWhiteCars()
+    {
+        ArrayList<Integer>lots = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            if (carList.get(i)!=null && carList.get(i).color == "white") {
+                System.out.println(carList.get(i).color);
+                lots.add(Integer.valueOf(i));
+            }
+        }
+        System.out.println(lots);
+        return lots;
+    }
 }
