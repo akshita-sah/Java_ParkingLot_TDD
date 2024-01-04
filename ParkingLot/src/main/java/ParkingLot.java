@@ -111,4 +111,15 @@ public class ParkingLot {
         }
         return -1;
     }
+    public int assignLot(Car c,Attendant attendant) {
+        if(c.driverType == "H") {
+            for (int i = 0; i < 5; i++) {
+                if (carList.get(i) != null) {
+                    System.out.println("The car lot assigned by attendant" + attendant.id + "is : " + i);
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
 }

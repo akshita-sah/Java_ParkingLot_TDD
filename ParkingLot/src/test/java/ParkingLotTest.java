@@ -9,13 +9,13 @@ public class ParkingLotTest {
     @Test
     public void givenCar_ParkTheCar_ReturnTrue(){
         ParkingLot parkingLot = new ParkingLot();
-        Assert.assertEquals(true,parkingLot.parkCar(new Car("1",new java.util.Date())));
+        Assert.assertEquals(true,parkingLot.parkCar(new Car("1",new java.util.Date(),"N")));
     }
     @Test
     /* UC - 2, unpark car */
     public void givenParkNumber_RemoveCar_ReturnTrue(){
         ParkingLot parkingLot = new ParkingLot();
-        Assert.assertEquals(true,parkingLot.parkCar(new Car("123",new java.util.Date())));
+        Assert.assertEquals(true,parkingLot.parkCar(new Car("123",new java.util.Date(),"N")));
         Assert.assertEquals(true,parkingLot.removeCar("123"));
     }
     @Test
@@ -30,10 +30,10 @@ public class ParkingLotTest {
     public void givenCapacity_CheckFull_NotifyToRemoveFullSign()
     {
         ParkingLot parkingLot = new ParkingLot();
-        parkingLot.parkCar(new Car("2",new java.util.Date()));
-        parkingLot.parkCar(new Car("3",new java.util.Date()));
-        parkingLot.parkCar(new Car("4",new java.util.Date()));
-        parkingLot.parkCar(new Car("5",new java.util.Date()));
+        parkingLot.parkCar(new Car("2",new java.util.Date(),"N"));
+        parkingLot.parkCar(new Car("3",new java.util.Date(),"N"));
+        parkingLot.parkCar(new Car("4",new java.util.Date(),"N"));
+        parkingLot.parkCar(new Car("5",new java.util.Date(),"N"));
         Assert.assertFalse(parkingLot.notifyFull());
         parkingLot.removeCar("2");
         Assert.assertTrue(parkingLot.notifyFull());
@@ -43,7 +43,7 @@ public class ParkingLotTest {
     public void givenCar_AssignAttendant_ParkCar()
     {
         ParkingLot parkingLot = new ParkingLot();
-        Assert.assertTrue(parkingLot.parkCar(new Car("6",new java.util.Date()),new Attendant("1")));
+        Assert.assertTrue(parkingLot.parkCar(new Car("6",new java.util.Date(),"N"),new Attendant("1")));
     }
     /*UC 7 - find car*/
     @Test
@@ -65,5 +65,13 @@ public class ParkingLotTest {
     {
         ParkingLot parkingLot = new ParkingLot();
         Assert.assertEquals(0,parkingLot.assignLot(new Attendant("2")));
+    }
+    /* UC 10 - Given driver assign nearest lot*/
+    @Test
+    public void givenHandicapDriver_FindNearestLot_AssignIt()
+    {
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.removeCar("6");
+        Assert.assertEquals(0,parkingLot.assignLot(new Car("6",new java.util.Date(),"H"),new Attendant("3")));
     }
 }
